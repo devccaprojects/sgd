@@ -19,7 +19,7 @@ public class ClientController {
 
     @GetMapping("/client/id/{id}")
     public Client getClient(@PathVariable Integer id) {
-        System.out.println("Puerto : " + environment.getProperty("local.server.port"));
+        System.out.println("Puerto client-service: " + environment.getProperty("local.server.port"));
         return new Client(1, "Direccion de prueba");
     }
 }
