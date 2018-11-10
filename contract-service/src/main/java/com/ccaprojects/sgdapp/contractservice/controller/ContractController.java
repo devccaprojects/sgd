@@ -46,7 +46,7 @@ public class ContractController {
     public ClientBean datosClienteFeign(@PathVariable Integer id) {
         System.out.println("Puerto : " + environment.getProperty("local.server.port"));
 
-       ClientBean response = proxy.getClient(id);
+        ClientBean response = proxy.getClient(id);
 
         return new ClientBean(response.getIdClient(), response.getAddress(), "Nombre cliente feign");
     }
