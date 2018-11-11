@@ -1,6 +1,8 @@
 package com.ccaprojects.sgdapp.clientservice.controller;
 
 import com.ccaprojects.sgdapp.clientservice.model.Client;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,8 @@ public class ClientController {
 
     private Environment environment;
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     public void setEnvironment(Environment environment) {
         this.environment = environment;
@@ -19,7 +23,11 @@ public class ClientController {
 
     @GetMapping("/client/id/{id}")
     public Client getClient(@PathVariable Integer id) {
-        System.out.println("Puerto client-service: " + environment.getProperty("local.server.port"));
-        return new Client(1, "Direccion de prueba");
+
+        Client client = new Client(1, "Direccion de prueba");
+
+        //logger.info("{}", environment.getProperty("local.server.port"));
+
+        return client;
     }
 }
