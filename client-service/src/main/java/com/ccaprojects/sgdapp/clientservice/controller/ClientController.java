@@ -22,9 +22,9 @@ public class ClientController {
     }
 
     @GetMapping("/client/id/{id}")
-    public Client getClient(@PathVariable Integer id) {
+    public Client getClient(@PathVariable Long id) {
 
-        Client client = new Client(1, "Direccion de prueba");
+        Client client = new Client(1L, "Direccion de prueba");
 
         //logger.info("{}", environment.getProperty("local.server.port"));
 
