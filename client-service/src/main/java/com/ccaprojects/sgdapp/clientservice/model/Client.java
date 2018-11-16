@@ -14,6 +14,9 @@ public class Client {
     private Long idClient;
     private String address;
 
+    public Client() {
+    }
+
     public Client(Long idClient, String address) {
         this.idClient = idClient;
         this.address = address;

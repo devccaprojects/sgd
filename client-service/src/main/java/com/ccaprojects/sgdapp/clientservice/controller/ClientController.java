@@ -1,6 +1,7 @@
 package com.ccaprojects.sgdapp.clientservice.controller;
 
 import com.ccaprojects.sgdapp.clientservice.model.Client;
+import com.ccaprojects.sgdapp.clientservice.repositories.ClientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,13 @@ public class ClientController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    private ClientRepository clientRepository;
+
+    @Autowired
+    public void setClientRepository(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
+
     @Autowired
     public void setEnvironment(Environment environment) {
         this.environment = environment;
@@ -24,9 +32,9 @@ public class ClientController {
     @GetMapping("/client/id/{id}")
     public Client getClient(@PathVariable Long id) {
 
-        Client client = new Client(1L, "Direccion de prueba");
+        Client client = clientRepository.findById(1L).get();
 
-        //logger.info("{}", environment.getProperty("local.server.port"));
+        logger.info("heello");
 
         return client;
     }

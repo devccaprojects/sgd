@@ -1,6 +1,8 @@
 package com.ccaprojects.sgdapp.contractservice.controller;
 
 import com.ccaprojects.sgdapp.contractservice.ClientServiceProxy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ public class ContractController {
 
     private ClientServiceProxy proxy;
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     public void setProxy(ClientServiceProxy proxy) {
         this.proxy = proxy;
@@ -31,7 +35,8 @@ public class ContractController {
 
     @GetMapping("/contract/id/{id}")
     public ClientBean datosCliente(@PathVariable Integer id) {
-        System.out.println("Puerto contract-service: " + environment.getProperty("local.server.port"));
+
+        logger.info("puerto contract-service: " + environment.getProperty("local.server.port"));
 
         Map<String, Integer> uriVariables = new HashMap<>();
         uriVariables.put("id", 1);
@@ -44,9 +49,10 @@ public class ContractController {
 
     @GetMapping("/contract-feign/id/{id}")
     public ClientBean datosClienteFeign(@PathVariable Integer id) {
-        System.out.println("Puerto : " + environment.getProperty("local.server.port"));
 
         ClientBean response = proxy.getClient(id);
+
+        logger.info("contract-feign");
 
         return new ClientBean(response.getIdClient(), response.getAddress(), "Nombre cliente feign");
     }

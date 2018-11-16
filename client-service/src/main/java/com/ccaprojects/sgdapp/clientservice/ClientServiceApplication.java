@@ -14,8 +14,8 @@ public class ClientServiceApplication {
 		SpringApplication.run(ClientServiceApplication.class, args);
 	}
 
-	/*@Bean
+	@Bean
 	public Sampler defaultSampler() {
 		return Sampler.ALWAYS_SAMPLE;
-	}*/
+	}
 }
