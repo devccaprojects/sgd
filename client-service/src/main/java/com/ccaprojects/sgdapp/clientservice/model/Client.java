@@ -13,13 +13,23 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idClient;
     private String address;
+    public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	private String firstName;
 
     public Client() {
     }
 
-    public Client(Long idClient, String address) {
+    public Client(Long idClient, String address, String firstName) {
         this.idClient = idClient;
         this.address = address;
+        this.firstName = firstName;
     }
 
     public Long getIdClient() {
@@ -55,6 +65,7 @@ public class Client {
     public String toString() {
         return "Client{" +
                 "idClient=" + idClient +
+                "firstName=" + firstName +
                 ", address='" + address + '\'' +
                 '}';
     }
